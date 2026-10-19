@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="StAI Relevant — an interactive field manual that teaches junior developers the fundamentals needed to supervise AI coding agents: catch misbehavior, specify tasks, think at the product level. Become a senior developer in the AI times." data-i18n-content="ui.metaDescription">
+<title>StAI Relevant · Become a Senior Developer in the AI times</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="#/">
+      <span class="wordmark-mark">StAI</span>
+      <span class="wordmark-text">StAI Relevant<em data-i18n="ui.wordmarkSub">Become a Senior Developer in the AI times</em></span>
+    </a>
+    <nav class="topnav">
+      <a href="#/" data-i18n="ui.navCurriculum">Curriculum</a>
+      <a href="#/glossary" data-i18n="ui.navGlossary">Glossary</a>
+      <a href="#/m/1" data-i18n="ui.navStart">Start</a>
+    </nav>
+    <label class="lang-picker">
+      <span class="visually-hidden" data-i18n="ui.langLabel">Language</span>
+      <select id="lang-select" data-i18n-aria-label="ui.langLabel" aria-label="Language"></select>
+    </label>
+    <div class="progress-widget" id="progress-widget" data-i18n-title="ui.progressTitle" title="Overall progress">
+      <svg viewBox="0 0 26 26" width="26" height="26" aria-hidden="true">
+        <circle class="ring-bg" cx="13" cy="13" r="11"></circle>
+        <circle class="ring-fg" id="progress-ring" cx="13" cy="13" r="11"></circle>
+      </svg>
+      <span class="progress-pct" id="progress-pct">0%</span>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="main">
+  <noscript>
+    <div class="wrap">
+      <div class="note note-warn">
+        <strong data-i18n="ui.noscriptTitle">This course is interactive.</strong> <span data-i18n="ui.noscriptBody">Please enable JavaScript to use it.</span>
+      </div>
+    </div>
+  </noscript>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-colophon">
+      <p><strong>StAI Relevant</strong> — <span data-i18n="ui.footerTagline">become a senior developer in the AI times.</span></p>
+      <p><span data-i18n="ui.footerContact">Questions or ideas? Write to</span> <a href="mailto:stairelevant@gmail.com">stairelevant@gmail.com</a></p>
+      <p data-i18n="ui.footerPrivacy">No accounts. No tracking. Your progress lives in this browser (localStorage) and nowhere else.</p>
+    </div>
+    <button class="btn btn-ghost" id="reset-progress" type="button" data-i18n="ui.reset">Reset progress</button>
+  </div>
+</footer>
+
+<script src="curriculum.js"></script>
+<script src="glossary.js"></script>
+<script src="i18n/schema.js"></script>
+<script src="i18n/ui.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

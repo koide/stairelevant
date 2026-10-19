@@ -1,0 +1,17 @@
+{
+  "name": "stai-relevant",
+  "version": "1.0.0",
+  "private": true,
+  "description": "StAI Relevant — become a senior developer in the AI times. An interactive field manual that teaches junior developers the fundamentals of AI agent stewardship. The site itself has zero runtime dependencies; devDependencies are only for tests.",
+  "scripts": {
+    "test": "node tools/smoke-test.js",
+    "validate": "node tools/validate-content.js",
+    "i18n": "node tools/i18n-extract.js",
+    "i18n:check": "node tools/i18n-extract.js --coverage all",
+    "stage": "node tools/stage-site.js",
+    "deploy:cf": "node tools/stage-site.js && npx wrangler pages deploy dist --project-name=stewardship"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  }
+}

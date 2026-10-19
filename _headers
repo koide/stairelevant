@@ -1,0 +1,3 @@
+# Translation dictionaries change when content changes — keep them on a short cache.
+/i18n/*
+  Cache-Control: public, max-age=3600

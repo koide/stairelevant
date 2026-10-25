@@ -11,7 +11,7 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
-const EXCLUDE = new Set(['.git', '.github', '.amp', 'node_modules', 'dist', 'tools']);
+const EXCLUDE = new Set(['.git', '.github', '.amp', 'node_modules', 'dist', 'tools', 'wrangler.jsonc']);
 
 fs.rmSync(DIST, { recursive: true, force: true });
 fs.mkdirSync(DIST, { recursive: true });

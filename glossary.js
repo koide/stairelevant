@@ -378,7 +378,7 @@ window.GLOSSARY = [
 },
 {
   id: 'caching', term: 'cache', match: '\\bcach(e|es|ed|ing)\\b',
-  def: 'Storing a computed result for faster reuse \u2014 trading staleness for speed. Cache invalidation is the part agents decide silently.',
+  def: 'Storing a computed result for faster reuse \u2014 gaining speed at the risk of serving stale data. Cache invalidation is the part agents decide silently.',
   steward: '\u201cI added caching for performance\u201d is a trade you did not approve. Ask for the invalidation policy and who pays for stale data.',
   links: [
     { t: 'MDN \u2014 HTTP caching', u: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching' },

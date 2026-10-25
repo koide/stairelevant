@@ -110,7 +110,6 @@
       return (b.entry.prio || 0) - (a.entry.prio || 0) || b.entry.match.length - a.entry.match.length;
     });
   }
-  buildGlossMatchers();
 
   var GLOSS_SKIP = { PRE: 1, CODE: 1, BUTTON: 1, A: 1, INPUT: 1, TEXTAREA: 1, SELECT: 1, SCRIPT: 1, STYLE: 1, H1: 1 };
 
@@ -396,6 +395,16 @@
       '    <div><strong>' + readDone + '/' + TOTAL_LESSONS + '</strong><span>' + t('ui.statLessons') + '</span></div>' +
       '    <div><strong>' + drillsPassed + '/' + TOTAL_DRILLS + '</strong><span>' + t('ui.statDrills') + '</span></div>' +
       '  </div>' +
+      '</section>' +
+
+      '<section class="wrap section-tight" aria-labelledby="priorities-title">' +
+      '  <h2 class="section-title" id="priorities-title">' + t('ui.sectionPriorities') + '</h2>' +
+      '  <ul class="howlist">' +
+      '    <li>' + t('ui.priorityProblem') + '</li>' +
+      '    <li>' + t('ui.priorityOwnership') + '</li>' +
+      '    <li>' + t('ui.prioritySystems') + '</li>' +
+      '    <li>' + t('ui.priorityCommunication') + '</li>' +
+      '  </ul>' +
       '</section>' +
 
       '<section class="wrap section-tight">' +
@@ -848,7 +857,7 @@
         } else {
           poolEl.appendChild(item);
           if (!$$('.order-item', chosenEl).length) {
-            chosenEl.insertAdjacentHTML('afterbegin', '<p class="order-hint">Click pieces in the order you think is right.</p>');
+            chosenEl.insertAdjacentHTML('afterbegin', '<p class="order-hint">' + t('ui.orderHint') + '</p>');
           }
         }
         var n = $$('.order-item', chosenEl).length;
@@ -874,7 +883,7 @@
           poolEl.appendChild(el);
         });
         if (!$('.order-hint', chosenEl)) {
-          chosenEl.insertAdjacentHTML('afterbegin', '<p class="order-hint">Click pieces in the order you think is right.</p>');
+          chosenEl.insertAdjacentHTML('afterbegin', '<p class="order-hint">' + t('ui.orderHint') + '</p>');
         }
         updateCheck();
       });
@@ -924,10 +933,10 @@
       var pickedFlag = picked.indexOf(i) !== -1;
       var right = ex.options[i].ok;
       var mark;
-      if (pickedFlag && right) mark = '<span class="mk mk-ok">&#10003; picked &middot; correct</span>';
-      else if (pickedFlag && !right) mark = '<span class="mk mk-no">&#10007; picked &middot; wrong</span>';
-      else if (!pickedFlag && right) mark = '<span class="mk mk-miss">&#9711; missed &middot; correct</span>';
-      else mark = '<span class="mk mk-skip">&middot; correctly skipped</span>';
+      if (pickedFlag && right) mark = '<span class="mk mk-ok">&#10003; ' + t('ui.pickedCorrect') + '</span>';
+      else if (pickedFlag && !right) mark = '<span class="mk mk-no">&#10007; ' + t('ui.pickedWrong') + '</span>';
+      else if (!pickedFlag && right) mark = '<span class="mk mk-miss">&#9711; ' + t('ui.missedCorrect') + '</span>';
+      else mark = '<span class="mk mk-skip">&middot; ' + t('ui.correctlySkipped') + '</span>';
       el.insertAdjacentHTML('beforeend', mark);
       var box = el.querySelector('input'); if (box) box.disabled = true;
     });
@@ -1010,11 +1019,13 @@
       updateProgressRing();
     });
     I18N.init(function () {
+      buildGlossMatchers();
       wireLanguagePicker();
       route();
       updateProgressRing();
     });
   } else {
+    buildGlossMatchers();
     route();
     updateProgressRing();
   }

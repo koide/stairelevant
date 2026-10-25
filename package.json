@@ -2,7 +2,7 @@
   "name": "stai-relevant",
   "version": "1.0.0",
   "private": true,
-  "description": "StAI Relevant — become a senior developer in the AI times. An interactive field manual that teaches junior developers the fundamentals of AI agent stewardship. The site itself has zero runtime dependencies; devDependencies are only for tests.",
+  "description": "StAI Relevant — engineering judgment in the AI era. Technical fundamentals, clear communication, and responsibility from problem to outcome. The site itself has zero runtime dependencies; devDependencies are only for tests.",
   "scripts": {
     "test": "node tools/smoke-test.js",
     "validate": "node tools/validate-content.js",

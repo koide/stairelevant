@@ -24,7 +24,7 @@
      { t:'note',  kind:'tip'|'warn', html }       callout
      { t:'terms', items: [[k, v], ...] }          definition list
      { t:'steps', items: [[verb, html], ...] }    numbered step pills
-     { t:'lens',  html }                          the signature "AI Steward Lens" callout
+     { t:'lens',  html }                          the "Judgment in practice" callout
 
    Exercise types:
      { type:'quiz',  prompt, code?, options: [{text, ok}], explain, lens? }
@@ -39,8 +39,8 @@ const CURRICULUM = [
 {
   id: 'm1',
   number: 1,
-  title: 'The Steward\u2019s Mindset',
-  tagline: 'Why the fundamentals matter more, not less, in the agent era.',
+  title: 'From Problem to Outcome',
+  tagline: 'Choose a worthwhile problem, understand the system, and take responsibility for the result.',
   deeper: [
     {
       title: 'How a language model actually writes code',
@@ -64,38 +64,38 @@ const CURRICULUM = [
   ],
   lessons: [
     {
-      title: 'The gap you\u2019re here to fill',
+      title: 'Start with the problem',
       blocks: [
-        { t:'p', html:'In 2010, a junior developer learned by writing code slowly, breaking things, and fixing them. In the agent era, a junior developer supervises a machine that writes code instantly \u2014 and the learning that used to happen automatically now doesn\u2019t happen at all. This course exists to reinstall it.' },
+        { t:'p', html:'A support team spends Friday afternoons helping customers find old invoices. Someone asks you to “build a smarter search.” Before writing code or prompting an agent, find out who is struggling, what they are trying to do, and where the current process fails. Better labels or a saved filter might solve the problem without a new search system. Agree on an observable improvement, such as customers finding an invoice without contacting support, and establish what happens today so you can compare.' },
         { t:'note', kind:'tip', html:'<strong>A note on examples:</strong> the code samples in this course are JavaScript and TypeScript, because that is what most web agents write today \u2014 but nothing here is JavaScript-specific. Mutation bugs, races, N+1 queries, locking migrations, layer violations, and silent tradeoffs exist in every language and stack: Java, Python, Go, Ruby, C#, Rust. Only the syntax changes; the stewardship questions stay identical.' },
-        { t:'p', html:'Here is the uncomfortable truth about AI coding agents: they produce output faster than you can evaluate it. A senior engineer reads the agent\u2019s diff and instantly smells trouble \u2014 a hallucinated API, a doubled <code>POST</code> request, a dropped index, a weakened test. That instinct was built by decades of direct contact with the machine. You don\u2019t have decades. You have this course.' },
+        { t:'p', html:'AI can help you explore options and implement a solution. Your contribution includes deciding what is worth building, following through to the outcome, understanding how the system fits together, and communicating what you know. Technical fundamentals support all four: an index may make search faster, but it will not fix confusing labels. This course gives you practice in making those distinctions; experience comes from applying them and learning from the results.' },
         { t:'h', html:'Two ways agents fail' },
         { t:'terms', items: [
           ['Honest miscomprehension', 'The agent does exactly what you <em>said</em> instead of what you <em>meant</em>. You ask it to \u201cadd a retry\u201d and it retries a payment <code>POST</code> five times. Every instruction you give is a specification \u2014 and a sloppy spec becomes wrong software at machine speed.'],
           ['Confident nonsense', 'The agent invents a plausible endpoint, SDK method, or config flag that does not exist \u2014 and uses it without hesitation. It doesn\u2019t know it\u2019s guessing. Everything it writes <em>sounds</em> right, because it was trained to sound right.']
         ]},
         { t:'note', kind:'warn', html:'The dangerous failure is not the obvious one. An agent that writes visibly broken code teaches you quickly. An agent that writes plausible code you can\u2019t evaluate teaches you nothing \u2014 until production teaches you instead.' },
-        { t:'h', html:'Steward, not typist' },
-        { t:'p', html:'Your role has shifted. You are no longer the typist \u2014 you are the <strong>steward</strong>: the person accountable for what gets shipped, even when a machine typed it. You cannot out-type the agent, so you must out-judge it. Judgment requires understanding, and this course is a judgment-building curriculum: every module teaches a layer of the machine (the web, languages, databases, architecture) through one question \u2014 <em>what does an agent get wrong here, and how do I catch it?</em>' },
-        { t:'lens', html:'Before delegating anything, ask yourself: <strong>\u201cIf this output is wrong, will I be able to tell?\u201d</strong> If the honest answer is \u201cno,\u201d you have found the next thing to learn \u2014 and it\u2019s probably in this course.' }
+        { t:'h', html:'Responsibility from problem to outcome' },
+        { t:'p', html:'We use <strong>steward</strong> for someone who takes responsibility for a change, including work delegated to AI. That does not mean doing everything alone or bypassing the people who approve decisions. It means clarifying the need, involving the right people, making tradeoffs explicit, checking the work, and following up. Every technical lesson asks: <em>what decision does this help you make, what could go wrong, and how would you check the result?</em>' },
+        { t:'lens', html:'Write a three-sentence problem statement for the invoice example: <strong>who needs help, what is getting in their way, and what observable improvement would count as success?</strong> Keep the proposed solution separate. Before delegating it, also ask: “If this output is wrong, will I be able to tell?” If not, identify what you need to learn or who can help.' }
       ]
     },
     {
       title: 'The steward\u2019s loop',
       blocks: [
-        { t:'p', html:'Every safe interaction with an AI agent follows the same five steps. Memorize the verbs \u2014 the whole course hangs on them.' },
+        { t:'p', html:'Understand the problem, deliver a change, learn from the outcome. Within that larger responsibility, these five practices help you work safely with AI. They are not a one-way checklist: new evidence can send you back to the problem, and containment starts before the agent gets access.' },
         { t:'steps', items: [
-          ['1 \u00b7 Understand', 'Know what you are building and why. The product, the user, the constraints. (Module 7)'],
-          ['2 \u00b7 Specify', 'Turn intent into a task the machine cannot misread. (Module 7)'],
-          ['3 \u00b7 Direct', 'Hand the agent tasks with verifiable outcomes \u2014 tests at every layer, checkpoints where your judgment is needed. (Module 7)'],
-          ['4 \u00b7 Verify', 'Prove the result is right, using your mental model of the machine. (Modules 2\u20136)'],
-          ['5 \u00b7 Contain', 'Limit the blast radius for the day something slips through anyway. (Module 8)']
+          ['1 \u00b7 Understand', 'Find out whose problem you are solving, why it matters, and whether a software change is needed. Agree on the desired outcome. (Modules 1 and 7)'],
+          ['2 \u00b7 Specify', 'Write the intent, constraints, tradeoffs, and acceptance criteria so people and agents can work from the same understanding. (Module 7)'],
+          ['3 \u00b7 Direct', 'Delegate reviewable steps, keep responsibility clear, and involve teammates when a decision exceeds your knowledge or authority. (Module 7)'],
+          ['4 \u00b7 Verify', 'Check that the system behaves correctly. Separately, gather evidence about whether the change helps its users. (Modules 2–6 and 9)'],
+          ['5 \u00b7 Contain', 'Limit access and rollout, prepare recovery, and keep watching after deployment. (Module 8)']
         ]},
-        { t:'p', html:'Notice where the fundamentals sit: almost entirely inside <strong>Verify</strong>. You can only verify what you understand. If you don\u2019t know what an HTTP <code>POST</code> does, you cannot catch a retry loop that double-charges a customer. If you don\u2019t know what an index is, you won\u2019t notice that the agent\u2019s shiny new query takes eight seconds. The loop only works if you hold the model \u2014 so modules 2 through 5 build it.' },
-        { t:'note', kind:'tip', html:'Rule of thumb: the time you save by delegating must be reinvested in verification \u2014 and the longer the agent runs, the more verification the output demands. Spend two minutes reviewing an hour of agent work and you haven\u2019t saved 58 minutes; you\u2019ve deferred the cost, with interest, to your users.' },
+        { t:'p', html:'Fundamentals support <strong>every practice</strong>, not just verification. Understanding an HTTP <code>POST</code> helps you design a safe payment workflow before a retry bug exists. Understanding an index helps you choose between improving a query and adding a cache. Modules 2–5 build the system model you need to choose feasible solutions, explain their costs, and check their behavior.' },
+        { t:'note', kind:'tip', html:'Use time saved by delegation for understanding users, evaluating alternatives, verifying risky changes, and learning. Match the depth of verification to the consequences of failure, not simply the duration of an agent run. A one-line permissions change can deserve more scrutiny than hours of mechanical renaming.' },
         { t:'h', html:'The fundamental asymmetry' },
         { t:'p', html:'The agent produces a change in seconds; understanding that change takes minutes. That asymmetry is survivable \u2014 seniors survive it every day \u2014 but only with technique: tests at every layer, readable diffs, checkpoints while you build your mental model, and guardrails for the things technique misses. That machinery is modules 6 through 8.' },
-        { t:'lens', html:'The loop only pays off when every verb is real. Most agent failures are one skipped verb wearing a disguise \u2014 a spec that was never written, a diff that was never traced, a gate that was never held. When something breaks, ask which verb you skipped.' }
+        { t:'lens', html:'For a change you are considering, name the user outcome, the technical evidence needed before release, and the follow-up that could show the solution was wrong. Assign a person and a time to that follow-up. A passing test can prove a filter works; it cannot prove customers can find their invoices.' }
       ]
     },
     {
@@ -111,8 +111,8 @@ const CURRICULUM = [
           ['Wrong altitude', 'Asked for a small fix it refactors the world; asked for a feature it renames one variable. Choosing the right <em>level</em> of change is a human skill \u2014 for now.']
         ]},
         { t:'note', kind:'tip', html:'<strong>The capability treadmill.</strong> Models improve, so the <em>likelihood</em> of each blind spot moves \u2014 some get rare at the frontier; none become safe to skip. Old failure modes survive in cheaper and faster models, in long sessions, and in the legacy code you still have to read; new ones appear at the top end (over-engineering, confident stale knowledge, agreeing with your wrong hypothesis, gaming the tests). What stays fixed is the mechanism: these are failures of intent, context, and evidence, not of knowledge. This course grades the mechanism and the check, never the current error rate \u2014 so it does not expire with the next model release.' },
-        { t:'p', html:'None of these are reasons to avoid agents \u2014 they\u2019re reasons to build the knowledge that catches them. Each module of this course ends with a \u201cSteward lens\u201d: the concrete way that concept changes how you supervise the machine.' },
-        { t:'lens', html:'Keep a private scorecard. Every time an agent surprises you this week, name the blind spot: <em>literalism, invention, amnesia, tradeoffs, sycophancy, or wrong altitude.</em> Naming the failure mode is the first step to catching it in advance \u2014 and your scorecard is the only error-rate estimate that matters for your model, your prompts, and your codebase.' }
+        { t:'p', html:'These failure modes are reasons to use agents with evidence and context, not reasons to avoid them. Capability changes; responsibility for choosing and checking a solution remains. Each lesson ends with “Judgment in practice”: a decision you can make using what you have learned.' },
+        { t:'lens', html:'Choose what to delegate based on its risks and what you can verify. Keep a scorecard of surprises: <em>literalism, invention, amnesia, tradeoffs, sycophancy, or wrong altitude.</em> Record the evidence that caught each miss and adjust your checks. Also record when the implementation was correct but the chosen solution did not help.' }
       ]
     }
   ],
@@ -193,7 +193,7 @@ const CURRICULUM = [
   id: 'm2',
   number: 2,
   title: 'How the Web Works',
-  tagline: 'Catch agents that hallucinate endpoints, expose secrets, and double-charge customers.',
+  tagline: 'Design reliable interactions across browsers, servers, and APIs.',
   deeper: [
     {
       title: 'The full life of an HTTP request',
@@ -240,7 +240,7 @@ const CURRICULUM = [
         ]},
         { t:'h', html:'Idempotency: the word that saves money' },
         { t:'p', html:'An operation is <strong>idempotent</strong> if doing it twice is the same as doing it once. <code>GET</code>, <code>PUT</code> and <code>DELETE</code> roughly are. <code>POST</code> is not: two POSTs to <code>/orders</code> are two orders. Here\u2019s the trap \u2014 a <strong>timeout is not a failure</strong>. The request may have gone through; you just didn\u2019t hear back. \u201cJust add retries\u201d is, taken literally, the most expensive advice an agent can follow.' },
-        { t:'lens', html:'When an agent writes networking code, check three things: <strong>which method</strong> it uses, <strong>which status codes count as success</strong>, and <strong>what gets retried</strong>. A retry loop around a <code>POST</code> is a double-charge machine. If retries are genuinely needed, the request must carry an idempotency key or be made idempotent by design \u2014 and the agent will not decide that for you.' }
+        { t:'lens', html:'Decide what a customer should see when a payment times out. Check <strong>the HTTP method</strong>, <strong>success status codes</strong>, and <strong>retry behavior</strong>. Retrying a <code>POST</code> needs an idempotency design; test a lost response after a successful charge and verify that the customer is charged only once.' }
       ]
     },
     {
@@ -253,7 +253,7 @@ const CURRICULUM = [
         { t:'p', html:'Browsers block web pages from reading responses from other origins by default \u2014 this is the <strong>same-origin policy</strong>, a security wall. When an agent hits a CORS error, the correct fix is to configure the <em>server</em> to allow specific trusted origins. The agent\u2019s favorite \u201cfix\u201d is to remove the wall: reflect whatever <code>Origin</code> the request carried, with credentials allowed. Then any website your logged-in user visits can read your authenticated API on their behalf. (The cruder \u201callow <code>*</code> with credentials\u201d actually fails closed \u2014 browsers reject it. Reflection is the one that opens the door.)' },
         { t:'h', html:'DNS and latency: the network is slow' },
         { t:'p', html:'DNS turns names into IP addresses; every network hop costs milliseconds-to-tens-of-milliseconds. Code runs in nanoseconds. So \u201cjust call the API for each item\u201d is never free: 100 items \u00d7 30ms per round trip = 3 seconds of pure waiting. Agents write loops around network calls because loops look natural in code \u2014 and are catastrophic in latency.' },
-        { t:'lens', html:'For any agent code that touches the network, count two things: <strong>round trips</strong> (each is a performance decision) and <strong>secrets</strong> (where does each credential live, and who can see that place?). If it \u201cfixed\u201d a CORS error, find out exactly what it disabled.' }
+        { t:'lens', html:'Choose where work runs by considering both user waiting time and access to data. Count <strong>round trips</strong> and locate <strong>secrets</strong>. Inspect the browser bundle and network trace; verify that credentials stay server-side and that a CORS change permits trusted origins without exposing authenticated responses to others.' }
       ]
     },
     {
@@ -270,7 +270,7 @@ const CURRICULUM = [
         ]},
         { t:'note', kind:'tip', html:'In this course, \u201cthe agent said so\u201d is never evidence. Evidence is something you can point at: docs, code, a curl output, a passing test.' },
         { t:'p', html:'Contracts also mean validation: the server must treat every incoming request as hostile until proven valid \u2014 wrong types, missing fields, oversized values. Client-side validation is UX, not security; agents frequently confuse the two, because from the inside they look similar.' },
-        { t:'lens', html:'Budget 30 seconds per unfamiliar identifier in agent output: method, endpoint, env var, config key, CLI flag. If the identifier doesn\u2019t exist in your codebase\u2019s truth (types, lockfile, route files, docs), you\u2019ve caught a hallucination before it ships \u2014 at the cost of half a minute.' }
+        { t:'lens', html:'Before choosing an integration, confirm that its actual contract supports the user task. Check unfamiliar methods, endpoints, and fields against installed types, route files, and versioned documentation. Exercise success and invalid-input paths against the real contract; plausible names in agent output are not evidence.' }
       ]
     }
   ],
@@ -289,7 +289,7 @@ const CURRICULUM = [
           {text:'The retry delay grows too fast and blocks the checkout', ok:false},
           {text:'POST is idempotent so duplicates are impossible', ok:false}
         ],
-        explain:'POST creates something; it is not idempotent. A timeout after \u201cif (res.ok)\u201d means the request may have succeeded while the response never arrived. The retry loop can then create real, paid orders \u2014 up to five of them. The correct design uses an idempotency key or checks for an existing order before retrying.',
+        explain:'POST creates something; it is not idempotent. A timeout while waiting for confirmation means the request may have succeeded while the response never arrived. The retry loop can then create real, paid orders \u2014 up to five of them. The correct design uses an idempotency key or checks for an existing order before retrying.',
         lens:'\u201cRobust\u201d in an agent\u2019s mouth often means \u201cretries harder.\u201d Retry + non-idempotent verb = multiplication.'
       },
       {
@@ -354,7 +354,7 @@ const CURRICULUM = [
   id: 'm3',
   number: 3,
   title: 'How Code Actually Runs',
-  tagline: 'Catch the subtle bugs nobody can feel by reading: mutation, races, and \u201cit compiles.\u201d',
+  tagline: 'Reason about state, time, and behavior before trusting an implementation.',
   deeper: [
     {
       title: 'What happens when a line of JavaScript runs',
@@ -386,7 +386,7 @@ const CURRICULUM = [
         { t:'h', html:'Equality: two doors that look the same' },
         { t:'code', lang:'js', text:'"5" == 5       // true  \u2014 loose equality converts types\n"5" === 5      // false \u2014 strict: no conversion\n\n{ a: 1 } === { a: 1 }   // false \u2014 two different objects\nx === x                 // true  \u2014 same object, same pointer' },
         { t:'note', kind:'warn', html:'Loose <code>==</code> is the single most common source of \u201cimpossible\u201d bugs in agent-written JavaScript. <code>0 == \u201c\u201d == false == null</code> is a haunted house. Use <code>===</code> unless you can say, out loud, why you need conversion.' },
-        { t:'lens', html:'When reviewing agent code, hunt three things: <strong>in-place edits</strong> of shared objects (who else holds this reference?), <strong><code>==</code> vs <code>===</code></strong>, and any assumption that assignment copied an object. Mutation bugs never crash at the scene of the crime \u2014 they testify somewhere else entirely. If your model has stopped making this mistake, the skill still transfers: same reference, same question \u2014 who else holds it?' }
+        { t:'lens', html:'Decide who owns a value and whether a function may change it. Review <strong>in-place edits</strong>, shared references, and <strong><code>==</code> versus <code>===</code></strong>. Test with two callers sharing an object: does changing one unexpectedly alter what the other sees? Make that ownership contract explicit before delegating the implementation.' }
       ]
     },
     {
@@ -403,7 +403,7 @@ const CURRICULUM = [
           ['Logic error', 'The program runs happily and does the wrong thing: the wrong percentage, the wrong direction, the wrong user\u2019s data. Silent, delayed, expensive.']
         ]},
         { t:'p', html:'Agents are excellent at eliminating runtime errors and completely indifferent to logic errors, because logic errors are invisible without knowing the <em>intent</em> \u2014 which lives in your head, not in the code.' },
-        { t:'lens', html:'Translate the agent\u2019s \u201cit compiles\u201d into its true meaning: \u201cI have removed the most <em>obvious</em> errors.\u201d Then ask the stronger question: <strong>which test would fail if this were wrong?</strong> (Module 6 teaches exactly how to answer that.) Model progress changes how <em>often</em> this happens, not what \u201cit compiles\u201d proves: shape, never behavior.' }
+        { t:'lens', html:'Decide what evidence the behavior needs beyond a successful compile. State the intended result and ask: <strong>which test would fail if this were wrong?</strong> A correctly typed deletion function can still delete nothing. Check the observable state change, not just its return type or the absence of errors.' }
       ]
     },
     {
@@ -419,7 +419,7 @@ const CURRICULUM = [
           '<strong>Unique constraints</strong> as tripwires: if \u201ctwo of these\u201d must not exist, the database itself refuses the second one.',
           '<strong>Sequencing/queues</strong> when order itself matters.'
         ]},
-        { t:'lens', html:'For any agent code that runs concurrently, ask the ritual question: <strong>\u201cWhat happens if two of these run at the same time?\u201d</strong> Then prefer primitives the agent cannot get wrong \u2014 atomic SQL updates, unique constraints, transactions \u2014 over hand-rolled locking logic it definitely can. Newer models reach for atomic primitives more often \u2014 verify anyway; the question costs one second and the race is silent either way.' }
+        { t:'lens', html:'Choose how to preserve the business rule when requests overlap. Ask: <strong>“What happens if two of these run at the same time?”</strong> Prefer suitable atomic updates, constraints, or transactions over improvised locking. Verify with concurrent requests and inspect the final state; correct results one request at a time do not establish correctness under contention.' }
       ]
     }
   ],
@@ -501,7 +501,7 @@ const CURRICULUM = [
   id: 'm4',
   number: 4,
   title: 'Data & Databases',
-  tagline: 'Catch the destructive moves before they land: N+1s, broken transactions, deadly migrations.',
+  tagline: 'Keep data useful, consistent, and recoverable as the product grows.',
   deeper: [
     {
       title: 'What the database does when you COMMIT',
@@ -534,7 +534,7 @@ const CURRICULUM = [
         { t:'code', lang:'js', text:'// One query for the list...\nconst users = await db.query("SELECT * FROM users WHERE active = 1");\n\n// ...then one query PER user:\nfor (const u of users) {\n  u.profile = await db.query(\n    "SELECT * FROM profiles WHERE user_id = ?", u.id);\n}\n\n// 100 users = 101 round trips. Each trip is milliseconds\n// of pure waiting. The page takes seconds. Nobody crashed.' },
         { t:'p', html:'This is the <strong>N+1 problem</strong>, and it is the classic agent failure: loops look natural in code, so agents write them fluently. The fix is a single query with a <code>JOIN</code> (or a batched <code>WHERE user_id IN (...)</code>). The agent\u2019s code will work in its demo \u2014 with 12 rows.' },
         { t:'p', html:'ORMs hide the SQL, which hides the speed. When an agent writes ORM code, read the generated SQL (nearly every ORM can log it) and check the query <em>plan</em>: does it use an index, or is it reading the whole table? <code>EXPLAIN</code> tells you.' },
-        { t:'lens', html:'Any agent diff that contains a loop around a query is a red flag on sight \u2014 count the round trips before reading another line. Rule of thumb: <strong>one screen of code can hide a hundred queries.</strong> New lookup column? Ask: \u201cwhere\u2019s the index?\u201d \u2014 newer models add one more often, but the question still decides.' }
+        { t:'lens', html:'Choose a query and indexing strategy for the amount of data users actually have. <strong>One screen of code can hide a hundred queries.</strong> Count round trips, inspect the query plan, and compare latency on representative data before adding a cache or more infrastructure.' }
       ]
     },
     {
@@ -551,7 +551,7 @@ const CURRICULUM = [
         ]},
         { t:'p', html:'Agents constantly write multi-step writes without transactions \u2014 update the order, then insert the audit log, then update the counter. Any failure in the middle leaves the data half-changed, and the failure will look \u201cimpossible\u201d when someone finds it months later.' },
         { t:'note', kind:'tip', html:'When an operation may be retried (by your code or by an agent\u2019s retry loop), design for it explicitly: idempotency keys, \u201ccheck then create\u201d inside the transaction, or a unique constraint that makes duplicates impossible.' },
-        { t:'lens', html:'For any agent code that writes in more than one step, ask: <strong>\u201cWhat does the data look like if it dies between step 2 and step 3?\u201d</strong> If the answer is \u201cbroken,\u201d it needs a transaction \u2014 and probably an idempotency design for retries on top.' }
+        { t:'lens', html:'Choose transaction boundaries from the business rule: which changes must succeed or fail together? Ask: <strong>“What does the data look like if it dies between step 2 and step 3?”</strong> Inject that failure and retry the operation; verify consistent balances, audit records, and absence of duplicate effects.' }
       ]
     },
     {
@@ -563,7 +563,7 @@ const CURRICULUM = [
         { t:'h', html:'Least privilege for machines' },
         { t:'p', html:'An agent with your database credentials <em>is you</em>. Give it development-database credentials, read-only access where possible, and never production write access. Destructive operations \u2014 migrations, bulk deletes \u2014 should require a human gate even when the agent prepared them perfectly. That\u2019s not distrust; that\u2019s a seatbelt. It clicks before the crash, or not at all.' },
         { t:'note', kind:'warn', html:'Backups are the only real safety net for irreversible operations \u2014 and only if they are recent, tested (an untested backup is a hypothesis), and actually restorable. Verify all three before any risky change, not after.' },
-        { t:'lens', html:'Before approving any agent-prepared migration, answer four questions: <strong>What happens to existing rows?</strong> <strong>How long does it lock a big table?</strong> <strong>What is the rollback path?</strong> <strong>When was the last tested backup?</strong> If you can\u2019t answer these \u2014 you\u2019re not ready to approve, and neither is the agent.' }
+        { t:'lens', html:'Decide whether and when the product can safely absorb this migration. <strong>What happens to existing rows?</strong> <strong>How long are locks held?</strong> <strong>What can be rolled back?</strong> <strong>Has the backup been restored successfully?</strong> Rehearse on representative disposable data and explain any downtime or irreversible loss to the people approving the change.' }
       ]
     }
   ],
@@ -646,7 +646,7 @@ const CURRICULUM = [
   id: 'm5',
   number: 5,
   title: 'Architecture & Boundaries',
-  tagline: 'Keep the agent inside the lines: layers, conventions, and owned tradeoffs.',
+  tagline: 'Understand how parts interact and make tradeoffs explicit.',
   deeper: [
     {
       title: 'How your build system walks the import graph',
@@ -677,7 +677,7 @@ const CURRICULUM = [
         { t:'h', html:'Circular dependencies: the quiet rot' },
         { t:'p', html:'The classic agent move: it hits an import error and \u201cfixes\u201d it by importing whatever is missing, wherever it is needed. One small fix; one big cycle: <code>A \u2192 B \u2192 A</code>. Cycles are how codebases stop making sense: nothing can be understood first, because everything refers to everything.' },
         { t:'code', lang:'js', text:'// The agent\u2019s "fix" for a missing type:\n// billing.ts\nimport { showPaymentModal } from "../ui/modal";  // service -> UI: backwards!\n// ...and modal.ts imports from billing.ts. A cycle is born.' },
-        { t:'lens', html:'In every agent diff, read the <strong>import list first</strong> \u2014 before the logic. Direction violations (data \u2192 UI, core \u2192 framework details) and new cycles are the fastest, cheapest misbehaviors to catch: 10 seconds of scanning prevents months of haunting.' }
+        { t:'lens', html:'Choose the layer that owns the behavior before asking an agent to implement it. Read the <strong>import list first</strong> and sketch the dependency path. A service that imports its UI can create a cycle and block reuse; check that the core behavior can still be tested without starting the UI.' }
       ]
     },
     {
@@ -692,7 +692,7 @@ const CURRICULUM = [
           'Point at exemplars: \u201cbuild it like <code>src/services/billing.ts</code>\u201d beats three paragraphs of abstract style guidance.',
           'Forbid the shortcuts the agent loves: \u201cno new dependencies without approval\u201d \u2014 new deps are new risk, new licensing, new maintenance, forever.'
         ]},
-        { t:'lens', html:'After any agent change, skim the diff asking one question: <strong>\u201cdoes this read like our codebase, or like a stranger\u2019s?</strong> Alien patterns \u2014 a new error style, a new global, an unfamiliar directory \u2014 are cheap to catch now and expensive to normalize later.' }
+        { t:'lens', html:'Decide whether an existing pattern serves this change before introducing another. Ask: <strong>“Can the next teammate find and maintain this behavior?”</strong> Compare naming, error handling, and ownership with a nearby example. If a new pattern is justified, explain its benefit and maintenance cost rather than accepting it because the agent produced it.' }
       ]
     },
     {
@@ -707,7 +707,7 @@ const CURRICULUM = [
         ]},
         { t:'note', kind:'warn', html:'\u201cI added a caching layer for performance\u201d from an agent is not a report \u2014 it\u2019s a trade you didn\u2019t approve. Cache invalidation is one of the two hard problems in computer science, and the agent decided your invalidation policy for you.' },
         { t:'p', html:'The steward owns the trades. When output contains a design decision, make it explicit: name the tradeoff, name who pays, and decide \u2014 in writing \u2014 whether you accept. A tradeoff you can\u2019t name is a review you didn\u2019t do.' },
-        { t:'lens', html:'Scan agent output for silent architecture: <em>caching, queues, retries, batch jobs, new dependencies, denormalized data</em>. Each is a decision smuggled in as an implementation detail. Unsmuggle it: write the trade down, then accept or reject it on purpose.' }
+        { t:'lens', html:'Treat <em>caching, queues, retries, batch jobs, new dependencies, and denormalized data</em> as choices, not defaults. Write the benefit, who bears the cost, and the evidence that would make you reconsider. For a cache, measure both response time and data freshness; faster is not better if users act on an outdated price.' }
       ]
     }
   ],
@@ -823,7 +823,7 @@ const CURRICULUM = [
         { t:'code', lang:'diff', text:'- expect(profile.status).toBe("active");\n+ expect(profile).toBeDefined();\n\n- if (user && user.isActive) {\n+ if (user || user.isActive) {\n\n- throw new Error("payment failed: " + err.message);\n+ // logged elsewhere, probably fine' },
         { t:'p', html:'A 40-line diff gets a real review; a 2,000-line diff gets a scroll and a shrug. That is still true \u2014 human attention is the scarce resource. The fix is not to cap the agent at short runs; it is to make behavior verifiable so the diff is not your only evidence: tests at every layer prove the behavior, and review concentrates on intent, blast area, and the minus lines. A long run with trustworthy tests is reviewable; a short diff with none is not.' },
         { t:'note', kind:'warn', html:'The most dangerous diff line in the world is the one that deletes a test assertion. Agents sometimes \u201cfix\u201d a failing test by deleting the assertion that was failing \u2014 the test suite goes green, and the bug goes to production wearing a green hat.' },
-        { t:'lens', html:'If you cannot explain an agent\u2019s diff to a teammate in two sentences, you cannot verify it \u2014 you can only hope about it. For a junior, that is the argument for checkpoints: they keep the system explainable while the mental model forms. Once it has, hours-long runs verified by tests at every layer can pass the same two-sentence test.' }
+        { t:'lens', html:'Before approving a change, explain its purpose and affected systems to a teammate. Trace a user action through the diff and inspect deleted checks as carefully as added code. If you cannot explain the behavior or its risks, ask for a smaller checkpoint or help; confidence is not a substitute for understanding.' }
       ]
     },
     {
@@ -840,7 +840,7 @@ const CURRICULUM = [
           ['Integration', 'Several real pieces together: the handler + the database. Catches wiring, queries, transactions.'],
           ['Smoke', 'Does the whole thing start and do the one critical thing? After deploy, this is your pulse check.']
         ]},
-        { t:'lens', html:'For every behavior an agent changed, ask the ritual question: <strong>\u201cWhich test would fail if this were wrong?\u201d</strong> If there is no answer, the behavior is unverified \u2014 no matter how green the suite is. And always open the tests an agent touched: read what they <em>assert</em>, not what they\u2019re named.' }
+        { t:'lens', html:'Choose tests from the intended behavior, not the implementation. Ask: <strong>“Which test would fail if this were wrong?”</strong> Read what tests <em>assert</em>, then try an input where a plausible wrong implementation gives a different answer. Passing those tests establishes specific behavior, not whether you chose the right user problem.' }
       ]
     },
     {
@@ -855,7 +855,7 @@ const CURRICULUM = [
         ]},
         { t:'p', html:'That\u2019s why observability matters to you personally: logs, errors, and metrics are the product\u2019s vital signs \u2014 the difference between \u201cI think it deployed fine\u201d and \u201cerror rate flat, p95 unchanged, zero failed jobs since deploy.\u201d Make the agent attach evidence to its claims: the curl output, the test run, the before/after numbers. An artifact beats an adjective every time.' },
         { t:'note', kind:'tip', html:'Phrase your verification requests as verbs: not \u201cdoes it work?\u201d but \u201ccurl /api/health and paste the output,\u201d \u201crun the refund test suite and paste the summary,\u201d \u201cshow me the row it created.\u201d Agents answer adjectives with adjectives; they answer verbs with artifacts.' },
-        { t:'lens', html:'\u201cIt works\u201d from an agent is a claim with no artifact attached. Your standing rule: <strong>no artifact, no merge.</strong> Ask for the terminal output, the test summary, the query result \u2014 and read them yourself.' }
+        { t:'lens', html:'Decide what each piece of evidence actually supports. <strong>No artifact, no merge</strong> is a useful release rule, but clean logs establish operational health, not customer value. Report correctness checks separately from user observations, compare with the starting point, and state what remains unknown.' }
       ]
     }
   ],
@@ -949,8 +949,8 @@ const CURRICULUM = [
 {
   id: 'm7',
   number: 7,
-  title: 'Specifying at the Right Level',
-  tagline: 'Turn intent into instructions that cannot be misread \u2014 and tasks sized for review.',
+  title: 'Communication, Specs & Follow-through',
+  tagline: 'Clarify the need, explain decisions, and keep people aligned through delivery.',
   deeper: [
     {
       title: 'How your spec becomes the model’s context',
@@ -973,56 +973,56 @@ const CURRICULUM = [
   ],
   lessons: [
     {
-      title: 'Ambiguity: the silent project killer',
+      title: 'From a request to a shared problem',
       blocks: [
-        { t:'p', html:'When instructions are ambiguous, agents do not ask \u2014 they resolve. They pick one interpretation and proceed at machine speed, with total confidence. \u201cMake the search faster\u201d could mean: cache the results, add an index, limit results to 20, or drop fuzzy matching. Four different products; the agent ships one; you find out which at review \u2014 or later.' },
+        { t:'p', html:'“Make the search faster” is a request, not yet a shared problem. Watch someone use it: are responses slow, results irrelevant, or labels confusing? Ask what the delay prevents them from doing. Compare a simpler workflow, clearer wording, and a code change before choosing a solution. Write down the current experience and the improvement you will look for; an agent can help investigate, but an untested assumption is still an assumption.' },
         { t:'h', html:'The three altitudes of specification' },
         { t:'terms', items:[
           ['Too vague', '\u201cMake it better.\u201d The agent fills the vacuum with its training average. You get a confident guess wearing your project\u2019s name.'],
           ['Too prescriptive', '\u201cRename this variable, call this function, move this line.\u201d You\u2019ve done the thinking the agent could have done \u2014 and none of the thinking only you can. Also: micromanaged prompts drown the intent the agent needs.'],
           ['Right altitude', 'Intent + constraints + acceptance criteria. The <em>what and why</em> from you; the <em>how</em> from the agent; the <em>proof</em> agreed in advance.']
         ]},
-        { t:'p', html:'Specifying is not bureaucracy \u2014 it is the moment you make your product decisions. If you don\u2019t make them in the spec, the agent makes them silently in the code (Module 5\u2019s smuggled tradeoffs, now at the scale of entire features).' },
-        { t:'lens', html:'For every instruction you write, run the <strong>three-product test</strong>: could a competent person build three different things from these words, all defensible? Then the agent will too \u2014 pick one at random. Fix the words, or fix the ambiguity with the product questions from this module\u2019s Lesson 2.' }
+        { t:'p', html:'Writing is a way to make decisions together, not just a way to prompt a model. A useful decision note names the problem, the alternatives, the proposed choice, its cost, and the evidence that would change your mind. Explain it in the language of the person deciding: “results may be five minutes out of date” tells a product colleague more than “we added a TTL cache.” Make clear whose approval is needed.' },
+        { t:'lens', html:'Write a short recommendation to a nontechnical colleague: an index or a five-minute cache for slow invoice search? State what you would measure first, the benefit and cost of your preferred option, and when you would reconsider. Apply the <strong>three-product test</strong>: if three different solutions fit your words, clarify the intended outcome and constraints.' }
       ]
     },
     {
       title: 'The task spec skeleton',
       blocks: [
-        { t:'p', html:'Six slots. Fill them in order; skip none. The whole thing fits in a paragraph \u2014 this is a skeleton, not a ceremony.' },
+        { t:'p', html:'Use these six slots to turn an agreed problem into work people and agents can share. Keep the spec short enough to review. Separate the behavior you can test before release from the user outcome you will evaluate afterward.' },
         { t:'steps', items:[
           ['Context', 'Why this exists, for whom, and what the user feels today. Two sentences of why are worth two pages of what.'],
-          ['Goal', 'One sentence describing the world after the change.'],
+          ['Goal', 'The improvement for the user, the starting point for comparison, and how you will judge whether the change helped.'],
           ['Non-goals', 'Explicitly out of scope. The cheapest guardrail you will ever write \u2014 one line that prevents an entire wrong product.'],
           ['Constraints', 'Performance, security, style, conventions, deadlines, \u201cdo not touch X,\u201d \u201cno new dependencies.\u201d'],
           ['Acceptance criteria', 'Checkable statements: each one verifiable by a test or by observation. If you can\u2019t check it, it\u2019s not a criterion \u2014 it\u2019s a vibe.'],
-          ['Done when', 'The definition of done: tests written, diff reviewed, docs updated, evidence attached.']
+          ['Done when', 'Release checks passed, diff reviewed, evidence and limitations communicated, and a named person and date agreed for evaluating the user outcome.']
         ]},
         { t:'h', html:'Worked example: \u201cbulk delete notifications\u201d' },
         { t:'code', lang:'text', text:'BAD SPEC:\n"Users should be able to bulk-delete their old notifications."\n\nWhat the agent will ship: a synchronous loop that DELETEs\nrows one by one, no confirmation, no audit, and a page\nthat hangs for 30s on 40k notifications.\n\nGOOD SPEC:\nContext: users have thousands of notifications; deleting one\n  by one is tedious. Deleting is irreversible.\nGoal: users can delete old notifications in bulk, safely.\nNon-goals: notification settings UI, undo (v2 maybe),\n  server-side retention changes.\nConstraints: must not lock the notifications table for other\n  requests; follow existing list component patterns.\nAcceptance:\n  1. User can select up to 50 and delete in one action.\n  2. Deleting > 20 requires a typed confirmation.\n  3. Each deletion writes an audit entry (who, what, when).\n  4. Deleting 40k takes < 2s perceived, via a queue + progress UI.\nDone when: tests cover criteria 1-4; diff reviewed;\n  queue retry path demonstrated.' },
-        { t:'lens', html:'Read your spec back and hunt for the vacuum: every sentence a confident guess could fill <em>differently than you meant</em>. Confirmation dialogs, audit entries, rate limits, locks, pagination, permissions \u2014 these are the invisible defaults agents never add unprompted.' }
+        { t:'lens', html:'Extend the example with an outcome check: observe how long clearing unwanted notifications takes today, then repeat the task after release. Name who will gather that evidence and when. Ask a teammate to describe the intended behavior from your spec; anything they interpret <em>differently than you meant</em> needs clarification before delegation.' }
       ]
     },
     {
-      title: 'Decomposition, tests & checkpoints',
+      title: 'Checkpoints, handoffs & follow-through',
       blocks: [
         { t:'p', html:'Modern agents can run for hours \u2014 the question is not how long they run, but what verifies the work while they do. Errors still compound: a wrong schema times a right implementation is still wrong. So you decompose into steps that each produce a <strong>verifiable artifact at the right test layer</strong> \u2014 not because the clock says so, but because that is where mistakes are caught cheapest:' },
         { t:'steps', items:[
           ['1 \u00b7 Shape', 'Schema, API contract, data model \u2014 plus the contract tests that pin them. Review the skeleton before muscle grows on it.'],
           ['2 \u00b7 Core + tests', 'The behavior with its executable specs at the unit and integration layers. Review the diff, watch a test fail on old code.'],
           ['3 \u00b7 Surfaces', 'UI, CLI, integrations \u2014 each with an end-to-end test that walks the real path.'],
-          ['4 \u00b7 Finish', 'Docs, migration plan, evidence attached. The done-when checklist, proven by tests you can run.']
+          ['4 · Deliver and follow up', 'Docs, migration plan, and release evidence; explain limitations and hand off monitoring. Agree who will check the user outcome and when.']
         ]},
-        { t:'note', kind:'tip', html:'For a junior, checkpoints are the main event: they are how <em>you</em> learn. Watching a system get built in reviewable pieces \u2014 schema, then logic, then surface \u2014 is the closest thing to the apprenticeship the agent era took away. Each checkpoint is a senior\u2019s mental model, catching fire in slow motion. Seniors who hold that model can let an agent run for hours and verify the result by its tests; juniors earn the same right one checkpoint at a time.' },
+        { t:'note', kind:'tip', html:'Checkpoints help you learn as well as manage risk. Explain what each part does, predict what could fail, and compare your prediction with the evidence. Ask a teammate to review decisions you do not yet understand. Using an agent does not remove the need to read, write, run, and debug code yourself.' },
         { t:'p', html:'Practical rule: if a task cannot be verified automatically \u2014 tests at every layer, types, CI \u2014 it should not run unattended. If it can, hours are fine. Decomposition exists to put a checkable artifact at each layer, not to keep the agent on a leash.' },
-        { t:'lens', html:'Verification is the unit of delegation \u2014 every step ends with evidence: a schema to read, a test to watch fail, a diff to review. Checkpoints are not a time limit on the agent; they are how a junior builds the mental model that makes hours-long runs safe to accept.' }
+        { t:'lens', html:'Write a handoff in four sentences: what changed for the user, what you verified, what remains uncertain, and who will do the next check by when. Link the evidence rather than repeating an agent summary. Someone reading it should know whether to approve, investigate, wait, or roll back.' }
       ]
     }
   ],
   drill: {
-    title: 'Drill 7 \u00b7 Write the spec, verify the work',
+    title: 'Drill 7 · Specify, explain, and follow through',
     passPct: 0.7,
-    intro:'Ambiguity hunting, spec surgery, and verification-first decomposition. Six situations, all taken from real PR titles.',
+    intro:'Six decisions about shared intent, checkable requirements, reviewable work, and communicating a tradeoff.',
     exercises: [
       {
         type:'multi',
@@ -1088,15 +1088,15 @@ const CURRICULUM = [
       },
       {
         type:'quiz',
-        prompt:'What do <strong>non-goals</strong> actually buy you in a spec?',
+        prompt:'Search is slow. An agent proposes caching invoice results for five minutes. Which recommendation gives a nontechnical product colleague enough information to decide?',
         options:[
-          {text:'They make the spec look more professional to stakeholders', ok:false},
-          {text:'They are the cheapest guardrail in existence: one line of text that pre-empts entire wrong products \u2014 \u201cno retention changes\u201d prevents the agent from \u201chelpfully\u201d rewriting your deletion policy', ok:true},
-          {text:'They document what the agent is allowed to hallucinate', ok:false},
-          {text:'They are required by most issue trackers', ok:false}
+          {text:'A TTL cache is standard practice. The agent recommends it, so we should ship it.', ok:false},
+          {text:'First measure the slow query and try an index. A five-minute cache may speed up results but hide recent invoice changes. Compare latency and freshness, agree what delay users can tolerate, and reconsider caching if the index is sufficient.', ok:true},
+          {text:'The cache passes its tests, so it proves customers will find invoices faster.', ok:false},
+          {text:'Caching makes systems faster. We can explain the details after deployment.', ok:false}
         ],
-        explain:'The agent fills every vacuum with its training average. Non-goals are how you pre-fill the vacuums you know exist: \u201cnot undo in v1,\u201d \u201cno changes to auth,\u201d \u201cno new dependencies.\u201d One sentence each, and whole wrong products become unreachable instead of merely unlikely.',
-        lens:'After writing any spec, ask: what adjacent thing might a confident guesser \u201chelpfully\u201d build? Write each one down as a non-goal.'
+        explain:'A useful recommendation connects the technical choice to its effect on people. It names an alternative, the benefit, the cost, the evidence needed, and the decision to agree together. Passing cache tests can establish cache behavior; it cannot establish that stale results are acceptable or that caching solves the real problem.',
+        lens:'Write so someone can decide: problem, options, recommendation, cost, and what evidence would change your mind.'
       }
     ]
   }
@@ -1141,7 +1141,7 @@ const CURRICULUM = [
           ['Human gates', 'Irreversible actions \u2014 migrations, bulk deletes, deploys, credential changes \u2014 require a human click, even when the machine prepared them perfectly.']
         ]},
         { t:'note', kind:'warn', html:'\u201cThe agent didn\u2019t mean to drop the table\u201d is not a defense. The table is still dropped. Permissions are a seatbelt: they click before the crash or not at all.' },
-        { t:'lens', html:'Before delegating any task, write the one-sentence answer to: <em>\u201cwhat is the worst thing that can happen with this actor\u2019s current access?\u201d</em> If your sentence contains the words \u201cproduction,\u201d \u201cdelete,\u201d or \u201call\u201d \u2014 that access is the next thing to shrink.' }
+        { t:'lens', html:'Choose the least access needed for the task. Write one sentence answering: <em>“Who could be harmed if this actor misuses its current permissions?”</em> Inspect the actual credentials and tool boundaries, not just the prompt. Confirm in a disposable environment that forbidden actions are blocked before trusting that boundary.' }
       ]
     },
     {
@@ -1156,7 +1156,7 @@ const CURRICULUM = [
           ['5 \u00b7 Rollback', 'Deploys that can be undone: feature flags, previous release one command away, backups proven by restore.']
         ]},
         { t:'note', kind:'tip', html:'Guardrails are not the tax you pay for using agents \u2014 they\u2019re the reason you can move fast with agents. Every gate that catches a mistake is permission to delegate more aggressively the next time. Speed without guardrails isn\u2019t speed; it\u2019s a countdown.' },
-        { t:'lens', html:'Write your personal pre-merge checklist \u2014 the five things you always verify before approving agent output \u2014 and keep it next to wherever you write specs. The checklist is what \u201csenior\u201d looks like in a file.' }
+        { t:'lens', html:'Choose release safeguards that match the consequences of failure. Write down the checks, the approver, the rollout limit, and who will watch and recover the system. Rehearse rollback and confirm monitoring before release; a checklist is useful because it coordinates action, not because it confers seniority.' }
       ]
     },
     {
@@ -1170,9 +1170,9 @@ const CURRICULUM = [
           ['Paranoid check', 'Database migrations, permissions changes, anything irreversible. Everything above + staged rollout + rollback rehearsed + human gate mandatory.']
         ]},
         { t:'h', html:'Trust is earned \u2014 and logged' },
-        { t:'p', html:'Keep a small log of misses: every agent mistake you caught late, near-miss, or incident. Not for blame \u2014 for calibration. Misses in one area mean the dial for that change type goes up; a quarter of clean catches means it can ease down. \u201cThe agent\u2019s been reliable\u201d is only ever evidence about the past, for one type of change, under conditions that may not hold tomorrow.' },
+        { t:'p', html:'Keep a small log of misses: every agent mistake you caught late, near-miss, or incident. Not for blame \u2014 for calibration. Misses in one area mean the dial for that change type goes up; a quarter of reliably catching issues before production is evidence for cautiously easing it down. \u201cThe agent\u2019s been reliable\u201d is only ever evidence about the past, for one type of change, under conditions that may not hold tomorrow.' },
         { t:'p', html:'And remember Module 1: the agent agreeing that something is a great plan is not data. Calibration is built from your observations, never from its confidence.' },
-        { t:'lens', html:'Per change type, write down your current verification ritual (one line each: typo \u2192 read diff; migration \u2192 staged + rehearsed rollback + human gate). After every miss, upgrade the ritual that let it through. That file <em>is</em> your seniority, growing in slow motion.' }
+        { t:'lens', html:'Set verification depth per change type and explain it to your team. Record what escaped, what caught it, and what check should change. Review whether the evidence still applies after a model or workflow update; a history of success on copy edits does not justify unattended database migrations.' }
       ]
     }
   ],
@@ -1256,13 +1256,13 @@ const CURRICULUM = [
   id: 'm9',
   number: 9,
   title: 'The Gauntlet \u00b7 Capstone',
-  tagline: 'One realistic day as a steward. Everything from modules 1\u20138, at once, with consequences.',
+  tagline: 'From an ambiguous customer problem to safe delivery and a plan to check the outcome.',
   deeper: [
     {
       title: 'Build your own steward lab',
       blocks: [
-        { t:'p', html:'Everything in this course becomes instinct through reps. A lab you can run weekly: take a weekend-sized app, write a one-page spec template, and run one agent task end to end with checkpoints — schema, core plus tests, surfaces, finish — reviewing every artifact before the next step.' },
-        { t:'p', html:'Keep the three artifacts that build calibration faster than any tutorial: a <strong>miss log</strong> (what the agent got wrong, which ritual caught it), a small suite of tests you watched fail first, and a CI gate you never bypass. Review the log monthly and adjust your per-change-type verification dials.' },
+        { t:'p', html:'Practise on a small app with a real user task. Observe the task, write a problem statement, compare options, and implement one bounded change with an agent. Review the schema, core behavior, tests, and interface. Then observe the task again: what improved, what did not, and what would you do differently?' },
+        { t:'p', html:'Keep a decision note, a <strong>miss log</strong>, meaningful tests, and an outcome note. The miss log helps improve your checks; the outcome note records whether the solution helped, with evidence and limitations. Discuss both with a teammate. Do not bypass the CI or human approval gates just because the experiment is small.' },
         { t:'p', html:'For deeper study, these hold up: the MDN web docs for the platform, OWASP for security, Google’s engineering practices for review, and <em>Designing Data-Intensive Applications</em> for how systems actually behave at scale.' },
         { t:'links', items: [['MDN Web Docs','https://developer.mozilla.org/'], ['OWASP Cheat Sheet Series','https://cheatsheetseries.owasp.org/'], ['Google — Engineering practices','https://google.github.io/eng-practices/'], ['Designing Data-Intensive Applications','https://dataintensive.net/']] }
       ]
@@ -1275,28 +1275,28 @@ const CURRICULUM = [
       blocks: [
         { t:'p', html:'<strong>LedgerLoop</strong> is a small SaaS: invoicing for freelancers. 40,000 users, one Postgres database, a payments provider called Paybolt, and you \u2014 the most junior developer on a team of four, which today makes you the closest thing to an \u201cagent steward\u201d the company has. Your team lead is on a train with bad Wi-Fi. The product owner, Mika, messages you at 09:12:' },
         { t:'note', kind:'tip', html:'\u201cUsers keep asking to \u2018get rid of\u2019 their old invoices. Legal says we must keep records 7 years \u2014 but a user <em>can anonymize</em> their own invoices once they\u2019re older than 90 days. Feels doable today? You\u2019ve got the agent.\u201d \u2014 Mika' },
-        { t:'p', html:'You have an AI agent, database access per the team\u2019s conventions (staging write, prod read-only, migrations go through CI), and until 17:00. Everything you\u2019ve learned is now live ammunition: the web (Module 2), subtle code (3), data (4), boundaries (5), verification (6), specification (7), containment (8), and the mindset that started it all (1).' },
-        { t:'p', html:'The Gauntlet is eight checkpoints. At each, you make the steward\u2019s call \u2014 and get the honest consequence. Pass six of eight to certify. No pressure. Well: some pressure.' },
-        { t:'lens', html:'As you play, notice yourself asking the module questions: <em>what did Mika actually mean? What is the blast radius? Which test would fail? What gets locked? Who sees this credential?</em> That voice in your head is the course working.' }
+        { t:'p', html:'You have an AI agent, staging write access, production read-only access, and a team rule that migrations go through CI. The target is 17:00, not permission to skip approvals. First find out whether “get rid of” means reducing clutter or removing personal data. For this simulation, Mika then confirms that users want self-service removal of client details while retaining financial records. Agree to compare completion without support help before and after release.' },
+        { t:'p', html:'The Gauntlet has eight checkpoints: clarify the problem, specify the behavior, inspect the implementation, hold release safeguards, and plan follow-up. Six of eight passes the exercise. This is practice in judgment, not a professional certification or a substitute for experience.' },
+        { t:'lens', html:'Keep three questions in view: <em>are we solving the right problem, does the system behave safely, and how will we know the change helped?</em> Use the technical lessons to justify your decisions, communicate uncertainty, and name who will check the outcome after release.' }
       ]
     }
   ],
   drill: {
     title: 'The Gauntlet \u00b7 Eight checkpoints',
     passPct: 0.75,
-    intro:'A day at LedgerLoop, compressed into eight decisions. Each checkpoint is the steward\u2019s move \u2014 chosen before any code exists.',
+    intro:'A day at LedgerLoop in eight decisions, from clarifying the customer problem to following up after deployment.',
     exercises: [
       {
         type:'quiz',
         prompt:'<strong>09:15.</strong> Mika\u2019s message is warm, friendly \u2014 and contains the words \u201cget rid of.\u201d Legal said \u201canonymize.\u201d These are different verbs. Your first steward move?',
         options:[
           {text:'Message the agent: \u201cadd a feature to get rid of old invoices\u201d \u2014 speed matters, details can be fixed later', ok:false},
-          {text:'Ask Mika the product questions first: what does anonymize mean (which fields, visible to whom)? One at a time or bulk? What about already-exported PDFs? Then write the spec with Mika\u2019s answers', ok:true},
+          {text:'Ask which user problem matters: clutter or personal data? Confirm the desired outcome, which fields anonymization removes, who can see them, bulk versus single actions, and exported PDFs. Agree how to check improvement, then write the spec with Mika.', ok:true},
           {text:'Write the migration immediately \u2014 schema is the long pole, get it running', ok:false},
           {text:'Push back: 7-year retention vs. anonymization is legally contradictory, so the feature is impossible', ok:false}
         ],
-        explain:'\u201cGet rid of\u201d + \u201canonymize\u201d is a vacuum the agent will fill with DELETE \u2014 and legal said no. Understanding (Module 1\u2019s loop, Module 7\u2019s altitude) is the step before specifying. The product questions \u2014 which fields, bulk or single, exported copies \u2014 are exactly what turns Mika\u2019s warmth into a spec. It costs 20 minutes and saves the day.',
-        lens:'The most junior-senior move there is: ask the human the questions the machine will otherwise answer by guessing.'
+        explain:'Removing clutter and removing personal data are different goals; a filter could address one without addressing the other. Clarify the need before committing to a feature, then resolve the behavior and retention constraints with Mika and the appropriate specialists. In this scenario, success means users can remove eligible client details without support help while the required financial records remain intact.',
+        lens:'Start with the need, not the requested implementation. Agree what improvement would count as success before delegating the work.'
       },
       {
         type:'multi',
@@ -1372,23 +1372,23 @@ const CURRICULUM = [
           'Human gate: you approve the production deploy (per team convention)',
           'Deploy behind the feature flag; enable for 5% of traffic',
           'Watch logs, error rate, and the audit table filling correctly',
-          'Enable for everyone once the metrics have been flat for 30 minutes',
-          'Write the changelog note and update the done-when checklist to \u201cproven\u201d'
+          'Expand only when agreed safety checks pass and sample users can complete anonymization; otherwise pause the rollout',
+          'Record release evidence and limitations; confirm who will compare the user outcome with the baseline and when'
         ],
-        explain:'Criteria before CI (CI runs the criteria\u2019s tests, so verify what they are), gates before deploy, flag before full enablement, observation before the 100% flip, documentation as the closing artifact. Misorder it and the sequence stops being a control: deploy before the gate and the human check is a formality after the fact; flip to 100% before watching and the staged rollout never happened; write the changelog before verification and you are documenting claims. The flag-enabled 5% window is the staged rollout from Module 8 \u2014 the difference between \u201cship and hope\u201d and \u201cship and know.\u201d',
-        lens:'The final sequence is every module in one line each: verify (6), gate (8), contain (8), observe (6), record (7\u2019s done-when). You just ran the steward\u2019s loop at production speed.'
+        explain:'Verify criteria and CI before approval, deploy to a limited group before expanding, and observe both safety and task completion. A quiet error dashboard is not enough if nobody can complete the task. Record what the release checks establish and what still needs follow-up; a small rollout does not yet prove a lasting improvement for all users.',
+        lens:'Safe deployment and useful outcomes need different evidence. Keep release gates, then follow through on the problem the change was meant to solve.'
       },
       {
         type:'quiz',
-        prompt:'<strong>17:15.</strong> Everything shipped, metrics flat, Mika sends \ud83d\udc4d. One last steward act before you close the laptop?',
+        prompt:'<strong>17:15.</strong> The feature is live and operational checks pass. Mika asks, “Did we solve the customer problem?” What is the most responsible response?',
         options:[
-          {text:'Nothing \u2014 ship it and log off, the metrics are flat', ok:false},
-          {text:'Log the day in your miss log: what the agent got wrong (the JS filter, the untransacted batch, the gutted test), which rituals caught each, and what you\u2019d upgrade \u2014 then close the laptop. Trust is calibrated with evidence, and today generated plenty', ok:true},
-          {text:'Ask the agent for a summary of what it did, to file as documentation', ok:false},
-          {text:'Disable the audit-logging job overnight to save database load', ok:false}
+          {text:'Yes. The tests pass and the error rate is unchanged, so the customer problem is solved.', ok:false},
+          {text:'Report verified behavior and what is still unknown. Agree that you and Mika will compare completion without support help against the baseline next week, and review user feedback. Record today’s near-misses and keep a named monitoring owner after handoff.', ok:true},
+          {text:'Send the agent’s implementation summary as proof that customers benefited.', ok:false},
+          {text:'The implementation is complete; whether it helps is now entirely the product team’s responsibility.', ok:false}
         ],
-        explain:'The day produced four near-misses and zero incidents \u2014 but only because the rituals existed: the spec questions, the SQL push, the transaction demand, the minus-line alarm, the human gate. That\u2019s exactly the data the miss log (Module 8) exists to capture: which change types here deserve a heavier dial tomorrow? Documentation filed from the agent\u2019s own summary is a claim, not a record \u2014 you were the witness, so you write it.',
-        lens:'The steward\u2019s day ends with the loop\u2019s quiet sixth step: reflect. The log you keep is the seniority you\u2019re building \u2014 one honest entry at a time.'
+        explain:'The implementation can be correct without solving the customer problem. Early task completion is encouraging, but compare it with the starting point and gather enough observations before claiming improvement. Name an owner and a date, explain uncertainty, and adjust the solution if evidence disagrees. The miss log improves technical checks; user follow-up tests whether you chose the right solution.',
+        lens:'Responsibility continues after deployment: communicate what you know, arrange the next check, and learn from the result rather than declaring victory from green tests.'
       }
     ]
   }

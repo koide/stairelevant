@@ -1,12 +1,14 @@
 # StAI Relevant
 
-**Become a Senior Developer in the AI times** — an interactive field manual that teaches junior developers the fundamentals needed to be good AI stewards: catching agents misbehaving, specifying tasks at the right level, and thinking about the product at the right altitude.
+**Engineering judgment in the AI era** — an interactive field manual for early-career developers. Learn to solve the right problem, understand what you build, communicate clearly, and take responsibility for outcomes while working with AI.
 
 Questions, feedback, or want to build on this? **stairelevant@gmail.com**
 
 ## The premise
 
-Senior engineers catch misbehaving AI agents because they hold a mental model of the whole stack — built by decades of direct contact with the machine. Junior developers in the agent era risk skipping that contact entirely. This course reinstalls it, with one twist: **every fundamental is taught through the question *"how do agents get this wrong, and how do I catch it?"*** The models change; the mechanisms don't — the drills grade the conditions that make a bug possible and the evidence that catches it, not any release's error rate.
+AI can help write code; useful software also requires choosing a worthwhile problem, following through, understanding systems, and writing clearly enough for people to decide and act. Technical fundamentals support each of those responsibilities, not just code review. Every lesson closes with **what decision this helps you make, what could go wrong, and how to check the result**.
+
+The course keeps concrete AI failure modes, verification, and containment. It places them inside a larger loop: **understand the problem → deliver a change → learn from the outcome**. Correct behavior and customer value require different evidence. Passing the course is practice in judgment, not a senior title or professional certification.
 
 - No build step, no runtime dependencies, no tracking. Pure HTML/CSS/JS (tests use jsdom as a devDependency).
 - Progress is stored in `localStorage`. No accounts, no server needed.
@@ -14,19 +16,19 @@ Senior engineers catch misbehaving AI agents because they hold a mental model of
 
 ## The curriculum
 
-| # | Module | Verifies the steward can catch… |
+| # | Module | Decisions and evidence |
 |---|--------|-------------------------------|
-| 1 | The Steward's Mindset | the failure modes: literalism, invention, amnesia, silent tradeoffs, sycophancy, wrong altitude |
-| 2 | How the Web Works | hallucinated APIs, non-idempotent retries, leaked client-side secrets, origin-reflecting CORS "fixes" |
-| 3 | How Code Actually Runs | mutation bugs, tests that can't fail, race conditions, "it compiles" as evidence |
-| 4 | Data & Databases | N+1 loops, untransacted multi-writes, locking migrations, missing rollback paths |
-| 5 | Architecture & Boundaries | layer violations, circular deps, generic-correct code, smuggled tradeoffs |
-| 6 | Verification & Review | gutted assertions, flipped conditions, green-but-meaningless tests, adjectives instead of artifacts |
-| 7 | Specifying at the Right Level | ambiguity that ships three different products, hours of agent work with no verification layers |
-| 8 | Guardrails & Containment | blast radius, missing human gates, miscalibrated trust |
-| 9 | The Gauntlet (capstone) | everything at once, in a simulated day at a small SaaS |
+| 1 | From Problem to Outcome | clarify the need, compare solutions, delegate with evidence, plan follow-up |
+| 2 | How the Web Works | reliable requests, safe retries, credential boundaries, actual API contracts |
+| 3 | How Code Actually Runs | state ownership, observable behavior, concurrency and business rules |
+| 4 | Data & Databases | query costs, transaction boundaries, safe migrations and recovery |
+| 5 | Architecture & Boundaries | dependency direction, maintainability, explicit tradeoffs |
+| 6 | Verification & Review | meaningful tests, reviewable changes, evidence and its limits |
+| 7 | Communication, Specs & Follow-through | shared intent, decision notes, specifications, handoffs and outcome checks |
+| 8 | Guardrails & Containment | least privilege, release safeguards, evidence-based trust |
+| 9 | The Gauntlet (capstone) | clarify a customer problem, deliver safely, communicate uncertainty and arrange follow-up |
 
-**Structure:** each module has ~3 lessons (every one ends with an *AI Steward Lens* — the concrete supervision takeaway) and a pass/fail drill (70% to pass, 75% for the capstone).
+**Structure:** each module has ~3 lessons (every one ends with *Judgment in practice*) and a pass/fail drill (70% to pass, 75% for the capstone). Lesson writing prompts practise problem statements, recommendations, and handoffs; these prompts are not automatically graded.
 
 **Exercise types:** quizzes (with code to inspect), multi-select spec surgery, click-to-order workflow assembly.
 

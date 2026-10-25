@@ -89,6 +89,10 @@ console.log('[home + routing]');
   ok($(w, '.hero h1') !== null, 'hero renders');
   ok($$(w, '.module-card').length === 9, '9 module cards');
   ok($$(w, '.loop-step').length === 5, '5 loop steps');
+  const priorities = $$(w, 'section[aria-labelledby="priorities-title"] li').map((el) => el.textContent);
+  ok(priorities.length === 4 && priorities.some((s) => /what to build/.test(s)) &&
+    priorities.some((s) => /problem to outcome/.test(s)) && priorities.some((s) => /systems interact/.test(s)) &&
+    priorities.some((s) => /Write clearly/.test(s)), 'home explains all four learning priorities');
   go(w, '#/m/1');
   ok($$(w, '.lesson-row').length === 3, 'module 1 lists 3 lessons');
   go(w, '#/m/1/l/0');
@@ -302,10 +306,10 @@ console.log('[i18n]');
 {
   const es = fresh('es');
   ok(es.I18N.lang() === 'es', 'resolves ?lang=es');
-  ok($(es, '.topnav a').textContent === 'Curr\u00edculo', 'UI chrome translates (es nav)');
-  ok(/La mentalidad del steward/.test(es.document.body.textContent), 'module 1 title translates (es)');
+  ok($(es, '.topnav a').textContent === 'Temario', 'UI chrome translates (es nav)');
+  ok(/Del problema al resultado/.test(es.document.body.textContent), 'module 1 title translates (es)');
   go(es, '#/m/1/l/0');
-  ok(/En 2010, un desarrollador junior/.test($(es, '.lesson-body').textContent), 'module 1 lesson body translates (es)');
+  ok(/Un equipo de soporte dedica las tardes/.test($(es, '.lesson-body').textContent), 'module 1 lesson body translates (es)');
   // Fallback: a content key the dictionary lacks leaves the English source in place.
   const esDict = es.I18N_DICTS.es || {};
   const source = JSON.parse(fs.readFileSync(path.join(ROOT, 'i18n/source.json'), 'utf8'));
@@ -331,6 +335,89 @@ console.log('[i18n]');
 
   const ja = fresh('ja');
   ok(ja.I18N.lang() === 'ja' && $(ja, '.topnav a').textContent === '\u30ab\u30ea\u30ad\u30e5\u30e9\u30e0', 'ja resolves and translates');
+}
+
+console.log('[i18n: localized glossary popups]');
+{
+  const examples = {
+    es: 'éCI CIé wCI CIz: una explicación y EXPLICACION no son CI. CI verifica cambios. Una alucinación.',
+    zh: 'éCI CIé wCI CIz explicaCIon不是术语，说明CI检查变更。幻觉需要验证。',
+    ja: 'éCI CIé wCI CIz explicaCIonは用語ではない。説明ではCIで変更を検証する。ハルシネーションを検証する。'
+  };
+  const beforeCI = { es: ' no son ', zh: '说明', ja: '説明では' };
+  for (const lang of ['es', 'zh', 'ja']) {
+    const w = fresh(lang);
+    go(w, '#/m/8/l/1');
+    const initialCI = $(w, '.lesson-body .gloss[data-gloss="ci"]');
+    ok(initialCI !== null, lang + ': real acronym is annotated on first load');
+    if (initialCI) {
+      click(initialCI);
+      ok(txt(w, '.gt-def') === w.I18N_DICTS[lang]['g.ci.def'], lang + ': first-load popup is translated before any language switch');
+    }
+    // Exercise rendered prose, not the matcher implementation. Keep a false
+    // substring before the real acronym so it cannot steal the block's popup.
+    w.I18N_DICTS[lang]['m1.lessons.0.blocks.0.html'] = examples[lang];
+    w.I18N.setLang(lang, { force: true });
+    go(w, '#/m/1/l/0');
+    const block = $(w, '.lesson-body').firstElementChild;
+    const ci = block.querySelector('.gloss[data-gloss="ci"]');
+    ok(ci && ci.textContent === 'CI' && ci.previousSibling.textContent.endsWith(beforeCI[lang]),
+      lang + ': only the real CI acronym is annotated');
+    const localized = block.querySelector('.gloss[data-gloss="hallucination"]');
+    ok(localized !== null, lang + ': translated glossary term is annotated in prose');
+    if (ci) {
+      click(ci);
+      ok(txt(w, '.gt-def') === w.I18N_DICTS[lang]['g.ci.def'], lang + ': acronym popup uses the active language definition');
+    }
+    if (localized) {
+      click(localized);
+      ok(txt(w, '.gt-def') === w.I18N_DICTS[lang]['g.hallucination.def'], lang + ': translated term opens its localized explanation');
+    }
+    w.I18N.setLang('en');
+    ok(!$(w, '.gloss-tip') || $(w, '.gloss-tip').hidden, lang + ': language switch closes the previous popup');
+  }
+}
+
+console.log('[i18n: exercise feedback and reset]');
+{
+  const es = fresh('es');
+  go(es, '#/m/5/drill');
+  click($(es, '#drill-begin'));
+  for (let i = 0; i < 2; i++) {
+    click($(es, '.option'));
+    click($(es, '#btn-next'));
+  }
+  // Pick one correct and one wrong answer, leaving both kinds unselected too.
+  for (const i of [0, 3]) {
+    const box = $$(es, '.option-check input')[i];
+    box.checked = true;
+    box.dispatchEvent(new es.Event('change', { bubbles: true }));
+  }
+  click($(es, '#order-check'));
+  ok(JSON.stringify($$(es, '.mk').map((el) => el.textContent)) === JSON.stringify([
+    '✓ seleccionada · correcta', '◯ sin seleccionar · correcta',
+    '◯ sin seleccionar · correcta', '✗ seleccionada · incorrecta',
+    '· descartada correctamente', '◯ sin seleccionar · correcta'
+  ]), 'all four multi-select feedback states render in Spanish');
+
+  go(es, '#/m/1/drill');
+  click($(es, '#drill-begin'));
+  for (let i = 0; i < 4; i++) {
+    if ($(es, 'button.option')) click($(es, 'button.option'));
+    else {
+      const box = $(es, '.option-check input');
+      box.checked = true;
+      box.dispatchEvent(new es.Event('change', { bubbles: true }));
+      click($(es, '#order-check'));
+    }
+    click($(es, '#btn-next'));
+  }
+  click($(es, '#order-pool .order-item'));
+  click($(es, '#order-chosen .order-item'));
+  ok(txt(es, '#order-chosen .order-hint') === 'Haz clic en las piezas en el orden que creas correcto.', 'returning the last piece keeps the Spanish hint');
+  click($(es, '#order-pool .order-item'));
+  click($(es, '#order-reset'));
+  ok(txt(es, '#order-chosen .order-hint') === 'Haz clic en las piezas en el orden que creas correcto.', 'resetting the order keeps the Spanish hint');
 }
 
 console.log('[reset]');

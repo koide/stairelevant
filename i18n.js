@@ -195,7 +195,12 @@
       return { source: entry ? entry.match : '', flags: entry && entry.cs ? '' : 'i' };
     }
     var escaped = String(entry.term).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return { source: escaped, flags: lang === 'es' ? 'i' : '' };
+    // Latin terms need word edges (CI is not the ci in explicación). CJK
+    // prose has no spaces, so allow API/CI directly beside Chinese or Japanese.
+    var word = '[\\p{Script=Latin}\\p{M}\\p{N}_]';
+    if (/^[\p{Script=Latin}\p{N}_]/u.test(entry.term)) escaped = '(?<!' + word + ')' + escaped;
+    if (/[\p{Script=Latin}\p{N}_]$/u.test(entry.term)) escaped += '(?!' + word + ')';
+    return { source: escaped, flags: 'u' + (entry.cs ? '' : 'i') };
   }
 
   root.I18N = {
